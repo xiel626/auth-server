@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Verificação Concluída</title>
+  <link rel="stylesheet" href="/style.css">
+</head>
+<body>
+  <div class="container">
+    <div class="check-icon">
+      <svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg>
+    </div>
+
+    <h1>Verificado!</h1>
+    <p class="status-msg">Sua identidade foi confirmada com sucesso.<br>O cargo foi atribuído no servidor.</p>
+    <p class="redirect-msg" id="countdown">Redirecionando em <strong>5</strong> segundos...</p>
+
+    <div class="progress-bar">
+      <div class="progress-fill"></div>
+    </div>
+
+    <a href="DISCORD_URL" class="btn" id="discord-btn">Ir para o Discord agora</a>
+
+    <div class="divider"></div>
+    <div class="credits">Desenvolvido por <span>Noxen</span></div>
+  </div>
+
+  <script>
+    // Pega URL de redirecionamento passada via query string: ?redirect=URL
+    const params = new URLSearchParams(window.location.search);
+    const target = params.get('redirect') || 'https://discord.com';
+
+    document.getElementById('discord-btn').href = target;
+
+    let secs = 5;
+    const cntEl = document.querySelector('#countdown strong');
+    const timer = setInterval(() => {
+      secs--;
+      cntEl.textContent = secs;
+      if (secs <= 0) { clearInterval(timer); window.location.href = target; }
+    }, 1000);
+  </script>
+</body>
+</html>

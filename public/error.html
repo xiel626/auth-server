@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Erro na Verificação</title>
+  <link rel="stylesheet" href="/style.css">
+</head>
+<body>
+  <div class="container">
+    <div class="check-icon" style="background:rgba(255,60,60,0.08);border-color:rgba(255,60,60,0.25);">
+      <svg viewBox="0 0 24 24" style="stroke:#ff4444;">
+        <line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/>
+      </svg>
+    </div>
+
+    <h1 style="color:#ff6b6b;">Erro!</h1>
+    <p class="status-msg" id="errmsg">Ocorreu um erro ao processar sua verificação.</p>
+    <p class="redirect-msg">Tente novamente ou entre em contato com um administrador.</p>
+
+    <a href="/" class="btn">Tentar novamente</a>
+
+    <div class="divider"></div>
+    <div class="credits">Desenvolvido por <span>Noxen</span></div>
+  </div>
+
+  <script>
+    const params = new URLSearchParams(window.location.search);
+    const msg = params.get('msg');
+    if (msg) document.getElementById('errmsg').textContent = decodeURIComponent(msg);
+  </script>
+</body>
+</html>
